@@ -102,7 +102,12 @@ for pkg in "${selected[@]}"; do
   echo
   echo "== $pkg =="
   backup_conflicts "$pkg"
-  stow -v -t "$HOME" "$pkg"
+  # --no-folding: always symlink individual files, never collapse a whole
+  # directory (e.g. ~/.config) into one symlink. Without this, stowing a
+  # lone .config-touching package on a fresh $HOME turns ~/.config itself
+  # into a symlink straight into this git repo, so anything another app
+  # later writes under ~/.config/<app> would land inside the cloned repo.
+  stow --no-folding -v -t "$HOME" "$pkg"
 done
 
 echo

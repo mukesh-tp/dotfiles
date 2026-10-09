@@ -27,7 +27,12 @@ target path as `<file>.pre-dotfiles.bak.<timestamp>` before stowing, so it's
 safe to run against an existing home directory.
 
 To add or remove a package later, just re-run `./bootstrap.sh`, or run stow
-directly: `stow -t ~ <package>` / `stow -D -t ~ <package>` (to remove).
+directly: `stow --no-folding -t ~ <package>` / `stow -D -t ~ <package>` (to
+remove). Always include `--no-folding` — without it, stowing a lone
+`.config`-touching package on a fresh `$HOME` turns `~/.config` itself into
+a symlink straight into this repo, so anything another app later writes
+under `~/.config/<app>` would land inside the cloned git repo instead of a
+normal directory. `bootstrap.sh` already does this for you.
 
 ## Packages
 
