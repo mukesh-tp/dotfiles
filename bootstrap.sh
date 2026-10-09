@@ -73,9 +73,15 @@ if [[ "$choice" == "all" ]]; then
   selected=("${names[@]}")
 else
   for n in $choice; do
+    if ! [[ "$n" =~ ^[0-9]+$ ]]; then
+      echo "  Ignoring invalid input: '$n' (not a number)"
+      continue
+    fi
     idx=$((n - 1))
     if [[ $idx -ge 0 && $idx -lt ${#names[@]} ]]; then
       selected+=("${names[$idx]}")
+    else
+      echo "  Ignoring out-of-range number: $n"
     fi
   done
 fi
