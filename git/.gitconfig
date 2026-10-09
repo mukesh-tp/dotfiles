@@ -1,0 +1,17 @@
+[user]
+	name = mukesh-tp
+	email = 71172622+mukesh-tp@users.noreply.github.com
+
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+
+[credential "https://dev.azure.com"]
+	useHttpPath = true
+
+# Machine-specific overrides (credential helper, extra identities, etc.)
+# live in ~/.gitconfig.local, which is NOT tracked by this repo.
+[include]
+	path = ~/.gitconfig.local

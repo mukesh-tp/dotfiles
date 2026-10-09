@@ -1,0 +1,47 @@
+# Mukesh Ghostty config
+# Main terminal setup: black, clean, fast, low-maintenance.
+
+# Font
+font-family = Hack Nerd Font Mono
+font-size = 14.5
+
+# Theme + black override
+theme = Catppuccin Mocha
+background = #000000
+foreground = #f8f8f2
+cursor-color = #ffffff
+cursor-text = #000000
+selection-background = #333333
+selection-foreground = #ffffff
+
+# Window appearance
+window-padding-x = 12
+window-padding-y = 10
+window-padding-balance = true
+macos-titlebar-style = tabs
+window-save-state = default
+
+# Cursor / mouse
+cursor-style = block
+cursor-style-blink = false
+mouse-hide-while-typing = true
+
+# Scrollback / UI
+scrollback-limit = 104857600
+scrollbar = system
+
+# Clipboard behavior
+copy-on-select = false
+clipboard-paste-protection = true
+clipboard-trim-trailing-spaces = true
+
+# macOS keyboard behavior
+macos-option-as-alt = true
+
+# Shell integration
+shell-integration = zsh
+shell-integration-features = cursor,title,ssh-env
+
+# Notifications for long commands
+notify-on-command-finish = unfocused
+notify-on-command-finish-after = 30s
