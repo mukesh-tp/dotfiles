@@ -69,6 +69,32 @@ command -v zoxide >/dev/null 2>&1 && eval "$(zoxide init zsh)"
 command -v atuin >/dev/null 2>&1 && eval "$(atuin init zsh)"
 
 # -----------------------------------------------------------------------------
+# fzf
+# Fuzzy history (Ctrl+R), file (Ctrl+T), and directory (Alt+C) search.
+# Modern fzf (0.48+) ships a built-in --zsh flag; fall back to the classic
+# shell-script locations (Homebrew or apt) for older installs.
+# -----------------------------------------------------------------------------
+
+if command -v fzf >/dev/null 2>&1; then
+  if fzf --zsh >/dev/null 2>&1; then
+    eval "$(fzf --zsh)"
+  else
+    for p in \
+      "/opt/homebrew/opt/fzf/shell/completion.zsh" \
+      "/home/linuxbrew/.linuxbrew/opt/fzf/shell/completion.zsh" \
+      "/usr/share/doc/fzf/examples/completion.zsh"; do
+      [ -r "$p" ] && source "$p" && break
+    done
+    for p in \
+      "/opt/homebrew/opt/fzf/shell/key-bindings.zsh" \
+      "/home/linuxbrew/.linuxbrew/opt/fzf/shell/key-bindings.zsh" \
+      "/usr/share/doc/fzf/examples/key-bindings.zsh"; do
+      [ -r "$p" ] && source "$p" && break
+    done
+  fi
+fi
+
+# -----------------------------------------------------------------------------
 # zsh-autosuggestions / zsh-syntax-highlighting
 # Checks Homebrew (mac/linuxbrew) and apt (Debian/Ubuntu) install locations.
 # -----------------------------------------------------------------------------
